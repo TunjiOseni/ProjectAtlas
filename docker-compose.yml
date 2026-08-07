@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  oracle-db:
+    image: gvenzl/oracle-free:23-slim
+    container_name: atlas-oracle
+
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+
+    environment:
+      ORACLE_PASSWORD: Oracle123
+      APP_USER: banking
+      APP_USER_PASSWORD: Banking123
+
+    volumes:
+      - ./database/oracle:/opt/oracle/sql
+
+    restart: unless-stopped
+
+volumes:
+  oracle-data:
