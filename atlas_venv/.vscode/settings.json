@@ -1,0 +1,17 @@
+{
+    "editor.formatOnSave": true,
+
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+        "source.fixAll.ruff": "explicit"
+    },
+
+    "python.analysis.typeCheckingMode": "basic",
+
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true
+}
