@@ -1,0 +1,11 @@
+INSERT INTO dim_tran_type VALUES ('CSH','Cash','Cash transaction','Y',1,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+INSERT INTO dim_tran_type VALUES ('TRF','Transfer','Funds transfer','Y',2,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+INSERT INTO dim_tran_type VALUES ('CHQ','Cheque','Cheque transaction','Y',3,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+INSERT INTO dim_tran_type VALUES ('ATM','ATM','ATM transaction','Y',4,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+INSERT INTO dim_tran_type VALUES ('POS','POS','Point of Sale transaction','Y',5,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+INSERT INTO dim_tran_type VALUES ('MOB','Mobile','Mobile banking transaction','Y',6,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+INSERT INTO dim_tran_type VALUES ('INT','Internet','Internet banking transaction','Y',7,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+INSERT INTO dim_tran_type VALUES ('USS','USSD','USSD transaction','Y',8,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+INSERT INTO dim_tran_type VALUES ('API','API','API initiated transaction','Y',9,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+INSERT INTO dim_tran_type VALUES ('FEE','Fee','Bank charge or fee','Y',10,'ACTIVE',USER,CURRENT_TIMESTAMP,NULL,NULL);
+COMMIT;
