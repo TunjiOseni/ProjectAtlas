@@ -3,10 +3,15 @@ import json
 import requests
 from dotenv import load_dotenv
 
+from utils.logger import get_logger
+
+
 from etl.extract.extract_account import extract_accounts
 from etl.transform.transform_account import transform_accounts
 
 load_dotenv()
+
+logger = get_logger("load_account")
 
 CLICKHOUSE_HOST = os.getenv("CLICKHOUSE_HOST", "localhost")
 CLICKHOUSE_PORT = os.getenv("CLICKHOUSE_PORT", "8123")
@@ -107,8 +112,27 @@ def load_accounts(accounts):
 
 
 if __name__ == "__main__":
-    accounts = extract_accounts()
+    try:
+        logger.info("Starting account ETL")
 
-    transformed_accounts = transform_accounts(accounts)
+        accounts = extract_accounts()
 
-    load_accounts(transformed_accounts)
+        logger.info(
+            "Extracted %s accounts from Oracle",
+            len(accounts)
+        )
+
+        accounts = transform_accounts(accounts)
+
+        logger.info(
+            "Transformed %s accounts",
+            len(accounts)
+        )
+
+        load_accounts(accounts)
+
+        logger.info("Account ETL completed successfully")
+
+    except Exception:
+        logger.exception("Account ETL failed")
+        raise

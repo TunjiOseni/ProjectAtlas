@@ -2,11 +2,15 @@ import os
 import json
 import requests
 from dotenv import load_dotenv
+from utils.logger import get_logger
+
 
 from etl.extract.extract_customer import extract_customers
 from etl.transform.transform_customer import transform_customers
 
 load_dotenv()
+
+logger = get_logger("load_customer")
 
 CLICKHOUSE_HOST = os.getenv("CLICKHOUSE_HOST", "localhost")
 CLICKHOUSE_PORT = os.getenv("CLICKHOUSE_PORT", "8123")
@@ -119,14 +123,39 @@ def load_customers(customers):
 
     response.raise_for_status()
 
-    print(
-        f"Loaded {len(customers_to_load)} new customers into ClickHouse"
-    )
+    logger.info(
+    "Loaded %s customers into ClickHouse",
+    len(customers)
+)
 
 
 if __name__ == "__main__":
-    customers = extract_customers()
 
-    transformed_customers = transform_customers(customers)
+    if __name__ == "__main__":
 
-    load_customers(transformed_customers)
+        try:
+            logger.info("Starting customer ETL")
+
+            customers = extract_customers()
+
+            logger.info(
+            "Extracted %s customers from Oracle",
+            len(customers)
+        )
+
+            customers = transform_customers(customers)
+            
+            logger.info(
+            "Transformed %s customers",
+            len(customers)
+        )
+
+            load_customers(customers)
+
+            logger.info("Customer ETL completed successfully")
+
+        except Exception:
+
+                logger.exception("Customer ETL failed")
+
+                raise

@@ -1,0 +1,24 @@
+{
+  "name": "projectatlas-oracle-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.oracle.OracleConnector",
+    "tasks.max": "1",
+
+    "database.hostname": "atlas-oracle",
+    "database.port": "1521",
+    "database.user": "C##DBZUSER",
+    "database.password": "Dbz123",
+    "database.dbname": "FREE",
+    "database.pdb.name": "FREEPDB1",
+
+    "topic.prefix": "atlas",
+    "table.include.list": "BANKING.FACT_TRANSACTION",
+
+    "snapshot.mode": "no_data",
+    "decimal.handling.mode": "double",
+
+    "schema.history.internal.kafka.bootstrap.servers": "kafka:9093",
+    "schema.history.internal.kafka.topic": "atlas-schema-history",
+    "schema.history.internal.store.only.captured.tables.ddl": "true"
+  }
+}

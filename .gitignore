@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+atlas_venv/
+venv/
+.venv/
+
+# Environment variables / secrets
+.env
+.env.*
+
+# Spark checkpoints
+checkpoints/
+
+# Logs
+logs/
+*.log
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp

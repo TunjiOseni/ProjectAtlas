@@ -3,10 +3,14 @@ import json
 import requests
 from dotenv import load_dotenv
 
+from utils.logger import get_logger
+
 from etl.extract.extract_transaction import extract_transactions
 from etl.transform.transform_transaction import transform_transactions
 
 load_dotenv()
+
+logger = get_logger("load_transaction")
 
 CLICKHOUSE_HOST = os.getenv("CLICKHOUSE_HOST", "localhost")
 CLICKHOUSE_PORT = os.getenv("CLICKHOUSE_PORT", "8123")
@@ -145,10 +149,27 @@ def load_transactions(transactions):
 
 
 if __name__ == "__main__":
-    transactions = extract_transactions()
+    try:
+        logger.info("Starting transaction ETL")
 
-    transformed_transactions = transform_transactions(
-        transactions
-    )
+        transactions = extract_transactions()
 
-    load_transactions(transformed_transactions)
+        logger.info(
+            "Extracted %s transactions from Oracle",
+            len(transactions)
+        )
+
+        transactions = transform_transactions(transactions)
+
+        logger.info(
+            "Transformed %s transactions",
+            len(transactions)
+        )
+
+        load_transactions(transactions)
+
+        logger.info("Transaction ETL completed successfully")
+
+    except Exception:
+        logger.exception("Transaction ETL failed")
+        raise
