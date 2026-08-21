@@ -1,2 +1,2 @@
-Git branch practice from master branch
+Git branch practice from BOTH branches
 I am learning Git branches
