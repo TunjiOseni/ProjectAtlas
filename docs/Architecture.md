@@ -312,3 +312,5 @@ Oracle
      Grafana
 
 Airflow provides orchestration, data-quality execution, and email notifications around the batch workflow.
+
+## Git Workflow Practice
