@@ -1,2 +1,2 @@
 Git branch practice from BOTH branches
-I am learning Git branches
+I am learning Git conflicts
